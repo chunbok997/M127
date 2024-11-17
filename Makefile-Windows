@@ -1,0 +1,16 @@
+CC = gcc
+INCLUDES = -IC:/msys64/mingw64/include -IC:/msys64/mingw64/include/gmp -IC:/msys64/mingw64/include/mpfr
+LIBS = -LC:/msys64/mingw64/lib
+CFLAGS = -Wall -Wextra -Werror -std=c99 -pedantic -g
+LDFLAGS = -lmingw32 -lm -lgmp -lmpfr
+SOURCES = $(wildcard *.c)
+OBJECTS = $(SOURCES:.c=.o)
+EXECUTABLES = $(SOURCES:.c=)
+
+all: $(EXECUTABLES)
+
+$(EXECUTABLES): $(OBJECTS)
+	$(CC) $(CFLAGS) $@.o -o $@ $(LDFLAGS)
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLES)
